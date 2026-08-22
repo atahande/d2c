@@ -697,5 +697,122 @@ renderStatic();
 renderBadge();
 </script>
 
+
+<!-- ============================================================
+     QUALTRICS BEHAVIOURAL TRACKING
+     Sends interaction data to the parent page via postMessage.
+     Harmless if the prototype is opened outside Qualtrics.
+     ============================================================ -->
+<script>
+(function(){
+  var T = {
+    condition: "d2c",
+    seconds_on_page: 0,
+    added_to_cart: 0,
+    reached_cart: 0,
+    reached_checkout: 0,
+    completed_order: 0,
+    items_in_cart: 0,
+    cart_value: 0,
+    products_viewed: 0,
+    product_list: "",
+    clicks: 0,
+    max_scroll: 0,
+    time_to_first_click: "",
+    time_to_add: "",
+    order_value: 0,
+    order_items: 0,
+    store_visits: 0,
+    store_list: ""
+  };
+  var seen = [];
+  var start = Date.now();
+  function secs(){ return Math.round((Date.now()-start)/1000); }
+
+  function snapshot(){
+    try{
+      T.items_in_cart = (typeof itemCount === "function") ? itemCount()
+                        : (typeof qty !== "undefined" ? qty : 0);
+      T.cart_value = (typeof total === "function") ? Number(total().toFixed(2)) : 0;
+    }catch(e){}
+    T.seconds_on_page = secs();
+    T.product_list = seen.join("|");
+  }
+  function send(){
+    snapshot();
+    try{ window.parent.postMessage({source:"shopPrototype", data:T}, "*"); }catch(e){}
+  }
+  function wrap(name, after){
+    if(typeof window[name] !== "function") return;
+    var orig = window[name];
+    window[name] = function(){
+      var r = orig.apply(this, arguments);
+      try{ after.apply(null, arguments); }catch(e){}
+      send();
+      return r;
+    };
+  }
+  function markAdd(){
+    T.added_to_cart = 1;
+    if(T.time_to_add === "") T.time_to_add = secs();
+  }
+  function markView(id){
+    if(id && seen.indexOf(id) < 0){ seen.push(id); T.products_viewed = seen.length; }
+  }
+
+  wrap("add", function(id){ markAdd(); });
+  wrap("addToCart", function(){ markAdd(); });
+  wrap("addBundle", function(){ markAdd(); });
+  // capture basket BEFORE placeOrder clears it
+  if(typeof window.placeOrder === "function"){
+    var _po = window.placeOrder;
+    window.placeOrder = function(){
+      try{
+        T.order_value = (typeof total === "function") ? Number(total().toFixed(2)) : 0;
+        T.order_items = (typeof itemCount === "function") ? itemCount()
+                        : (typeof qty !== "undefined" ? qty : 0);
+      }catch(e){}
+      var r = _po.apply(this, arguments);
+      T.completed_order = 1;
+      send();
+      return r;
+    };
+  }
+  wrap("openPDP", function(id){ markView(id); });
+  wrap("openSheet", function(id){ markView(id); });
+  wrap("setQty", function(){});
+  wrap("go", function(v){
+    if(v === "cart") T.reached_cart = 1;
+    if(v === "checkout") T.reached_checkout = 1;
+  });
+
+  document.addEventListener("click", function(){
+    T.clicks++;
+    if(T.time_to_first_click === "") T.time_to_first_click = secs();
+  }, true);
+
+  function scrollDepth(el){
+    var h = (el === window)
+      ? (document.body.scrollHeight - window.innerHeight)
+      : (el.scrollHeight - el.clientHeight);
+    var pos = (el === window) ? window.scrollY : el.scrollTop;
+    if(h > 0){
+      var d = Math.min(100, Math.round(pos / h * 100));
+      if(d > T.max_scroll) T.max_scroll = d;
+    }
+  }
+  window.addEventListener("scroll", function(){ scrollDepth(window); }, {passive:true});
+  document.addEventListener("scroll", function(e){
+    var el = e.target;
+    if(el && el.classList && (el.classList.contains("sheet") || el.classList.contains("app"))) scrollDepth(el);
+  }, true);
+
+  setInterval(send, 5000);
+  window.addEventListener("beforeunload", send);
+  window.addEventListener("pagehide", send);
+  send();
+})();
+</script>
+
 </body>
 </html>
