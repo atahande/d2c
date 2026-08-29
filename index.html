@@ -350,35 +350,18 @@ footer p{font-size:12px;color:var(--faint);}
   <section class="view on" id="view-pdp">
 
     <div class="shot">
-      <!-- product: sunscreen tube -->
-      <svg viewBox="0 0 120 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SOLA Daily Face Sunscreen tube">
-        <defs>
-          <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="42%" stop-color="#FDFCFA"/>
-            <stop offset="78%" stop-color="#EFEAE1"/>
-            <stop offset="100%" stop-color="#E2DCD1"/>
-          </linearGradient>
-          <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#D89A3F"/>
-            <stop offset="45%" stop-color="#C8892F"/>
-            <stop offset="100%" stop-color="#A97124"/>
-          </linearGradient>
-        </defs>
-        <ellipse cx="60" cy="203" rx="40" ry="5" fill="#1C1A18" opacity=".07"/>
-        <rect x="42" y="6" width="36" height="26" rx="3" fill="url(#cap)"/>
-        <rect x="46" y="30" width="28" height="5" rx="1.5" fill="#B87E2A"/>
-        <path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="url(#body)"/>
-        <rect x="30" y="36" width="7" height="160" fill="#FFFFFF" opacity=".55"/>
-        <text x="60" y="86" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" letter-spacing="3.4" fill="#232120">SOLA</text>
-        <line x1="46" y1="98" x2="74" y2="98" stroke="#D8D2C7" stroke-width="1"/>
-        <text x="60" y="122" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#4A453F">DAILY FACE</text>
-        <text x="60" y="134" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#4A453F">SUNSCREEN</text>
-        <text x="60" y="164" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="17" font-weight="700" fill="#C8892F">SPF 50+</text>
-        <text x="60" y="184" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1" fill="#8A847C">50 ML</text>
-      </svg>
-    </div>
-
+  <!-- product: sunscreen tube (same with Marketplace/Live) -->
+  <svg viewBox="0 0 120 210" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="60" cy="203" rx="38" ry="4" fill="#1B1D21" opacity=".07"/>
+    <rect x="42" y="6" width="36" height="26" rx="3" fill="#C8892F"/>
+    <rect x="46" y="30" width="28" height="5" rx="1.5" fill="#C8892F" opacity=".78"/>
+    <path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="#FDFCFA" stroke="#E0DDD7" stroke-width=".8"/>
+    <rect x="30" y="36" width="7" height="160" fill="#fff" opacity=".5"/>
+    <text x="60" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" letter-spacing="2.4" fill="#232120">SOLA</text>
+    <line x1="46" y1="100" x2="74" y2="100" stroke="#DAD6CE" stroke-width="1"/>
+    <text x="60" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#C8892F">SPF50+</text>
+  </svg>
+</div>
     <div class="pad">
       <p class="crumb">Sun care</p>
       <h1>Daily Face Sunscreen</h1>
@@ -611,8 +594,8 @@ function renderCart(){
   el.innerHTML =
     '<div class="line-item">'+
       '<div class="thumb">'+
-        '<svg viewBox="0 0 120 210"><rect x="42" y="6" width="36" height="26" rx="3" fill="#C8892F"/><rect x="46" y="30" width="28" height="5" rx="1.5" fill="#B87E2A"/><path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="#FBF9F5" stroke="#E4DED3"/><text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="60" y="140" text-anchor="middle" font-family="DM Sans" font-size="16" font-weight="700" fill="#C8892F">50+</text></svg>'+
-      '</div>'+
+  '<svg viewBox="0 0 120 210" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="203" rx="38" ry="4" fill="#1B1D21" opacity=".07"/><rect x="42" y="6" width="36" height="26" rx="3" fill="#C8892F"/><rect x="46" y="30" width="28" height="5" rx="1.5" fill="#C8892F" opacity=".78"/><path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="#FDFCFA" stroke="#E0DDD7" stroke-width=".8"/><rect x="30" y="36" width="7" height="160" fill="#fff" opacity=".5"/><text x="60" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" letter-spacing="2.4" fill="#232120">SOLA</text><line x1="46" y1="100" x2="74" y2="100" stroke="#DAD6CE" stroke-width="1"/><text x="60" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#C8892F">SPF50+</text></svg>'+
+'</div>'+
       '<div class="li-body">'+
         '<p class="li-name">'+PRODUCT.name+'</p>'+
         '<p class="li-size">'+PRODUCT.size+'</p>'+
