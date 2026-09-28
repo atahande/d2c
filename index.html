@@ -433,8 +433,8 @@ footer p{font-size:12px;color:var(--faint);}
 
     <div class="pad">
       <p class="crumb" id="pdpCrumb">Sun care</p>
-      <h1 id="pdpName">Daily Face Sunscreen</h1>
-      <p class="size" id="pdpSize">Broad-spectrum SPF 50+ · 50 ml</p>
+      <h1 id="pdpName">Daily Face Sunscreen SPF 50+</h1>
+      <p class="size" id="pdpSize">50 ml · Broad-spectrum UVA/UVB</p>
 
       <div class="price-row">
         <span class="price" id="pdpPrice">€14.99</span>
@@ -448,7 +448,7 @@ footer p{font-size:12px;color:var(--faint);}
       <p class="lede" id="pdpLede"></p>
 
       <div class="block">
-        <h2>Benefits</h2>
+        <h2>About this product</h2>
         <ul id="pdpBenefits"></ul>
       </div>
 
@@ -460,7 +460,7 @@ footer p{font-size:12px;color:var(--faint);}
       <!-- Complete Routine Section -->
       <div class="cross-sell" id="crossSellSection">
         <div class="cross-head">
-          <h2>Complete your routine</h2>
+          <h2>Complete the routine</h2>
           <span>SOLA Essentials</span>
         </div>
         <div class="cross-grid" id="crossGrid"></div>
@@ -468,21 +468,21 @@ footer p{font-size:12px;color:var(--faint);}
 
       <div class="rev-head">
         <h2>Reviews</h2>
-        <span>Showing 8 of 50</span>
+        <span id="revSubTitle">Showing 8 of 50</span>
       </div>
       <div id="reviews"></div>
     </div>
 
     <div class="sticky">
       <button class="btn" id="stickyAddBtn" onclick="addToCartCurrent()">Add to cart · €14.99</button>
-      <p class="btn-note">Free shipping on orders over €25</p>
+      <p class="btn-note">Free delivery on orders over €25</p>
     </div>
   </section>
 
   <!-- ============ CART ============ -->
   <section class="view" id="view-cart">
     <div class="pad">
-      <h2 class="section-title">Cart</h2>
+      <h2 class="section-title">Shopping cart</h2>
       <div id="cartBody"></div>
     </div>
   </section>
@@ -495,7 +495,7 @@ footer p{font-size:12px;color:var(--faint);}
       <div class="summary-mini">
         <div id="coItemList"></div>
         <div class="tot-row" style="margin-top:8px;">
-          <span>Shipping</span>
+          <span>Delivery</span>
           <span id="coShip">€3.95</span>
         </div>
         <div class="tot-row grand">
@@ -513,7 +513,7 @@ footer p{font-size:12px;color:var(--faint);}
       </div>
 
       <div class="fieldset">
-        <h3>Shipping address</h3>
+        <h3>Delivery address</h3>
         <div class="row2">
           <div class="field">
             <label for="f-first">First name</label>
@@ -591,19 +591,20 @@ footer p{font-size:12px;color:var(--faint);}
 const PRODUCTS = {
   sun: {
     id: "sun",
-    name: "Daily Face Sunscreen",
+    name: "Daily Face Sunscreen SPF 50+",
+    short: "Daily Face Sunscreen SPF 50+",
     category: "Sun care",
-    size: "Broad-spectrum SPF 50+ · 50 ml",
+    size: "50 ml · Broad-spectrum UVA/UVB",
     price: 14.99,
-    rating: "4.8",
+    rating: 4.8,
     reviewCount: 50,
     img: "sola-sun.png",
-    lede: "A lightweight daily sunscreen for the face. The fluid texture absorbs in seconds and leaves no white cast, so it works as the last step of a morning routine or under makeup.",
+    lede: "A lightweight daily sunscreen for the face. The fluid texture absorbs in seconds and leaves no white cast, so it works as the final step of a morning routine or under make-up. Fragrance-free and formulated for sensitive skin.",
     benefits: [
-      "Broad-spectrum SPF 50+ protection against UVA and UVB",
-      "Lightweight fluid texture that absorbs without residue",
+      "Broad-spectrum SPF 50+ against UVA and UVB",
+      "Water-light fluid, absorbs in under 30 seconds",
       "No white cast on any skin tone",
-      "Fragrance-free and suitable for sensitive skin"
+      "Fragrance-free, alcohol-free, no essential oils"
     ],
     usage: [
       "Apply every morning as the final step of your skincare routine",
@@ -611,23 +612,33 @@ const PRODUCTS = {
       "Let it absorb for a minute before applying makeup",
       "Reapply every two hours during direct sun exposure"
     ],
+    reviews: [
+      {n:"Maya R.", s:5, d:"2 weeks ago", t:"Light texture, no white cast at all. I've been using it every morning for two months and my skin looks calmer."},
+      {n:"Jen T.", s:5, d:"3 weeks ago", t:"Sits well under makeup and doesn't pill, which was my main problem with other sunscreens."},
+      {n:"Aisha K.", s:4, d:"1 month ago", t:"Good protection without the greasy feel. There's a faint scent at first but it fades quickly."},
+      {n:"Dilan A.", s:5, d:"1 month ago", t:"My skin is sensitive and reacts to most SPF products. This one hasn't caused any breakouts."},
+      {n:"Chris M.", s:5, d:"1 month ago", t:"Absorbs fast. I use it on my neck and ears too and the tube still lasts about six weeks."},
+      {n:"Sam W.", s:4, d:"2 months ago", t:"Does the job for daily wear. I'd like a bigger tube for the price, but I keep repurchasing."},
+      {n:"Noor E.", s:5, d:"2 months ago", t:"Finally a sunscreen I don't mind reapplying in the afternoon. No stinging around the eyes."},
+      {n:"Tobias L.", s:4, d:"3 months ago", t:"Fine for everyday use in the city. For a full beach day I'd still take something heavier."}
+    ],
     svg: '<svg viewBox="0 0 120 210" class="shot-svg-fallback"><rect x="42" y="6" width="36" height="26" rx="3" fill="#C8892F"/><rect x="46" y="30" width="28" height="5" rx="1.5" fill="#B87E2A"/><path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="#FBF9F5" stroke="#E4DED3"/><text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="60" y="140" text-anchor="middle" font-family="DM Sans" font-size="16" font-weight="700" fill="#C8892F">50+</text></svg>'
   },
   cleanser: {
     id: "cleanser",
     name: "Gentle Cleansing Gel",
-    category: "Cleanser",
-    size: "Balancing formula · 150 ml",
+    short: "Gentle Cleansing Gel",
+    category: "Skincare",
+    size: "150 ml",
     price: 9.99,
-    rating: "4.9",
+    rating: 4.6,
     reviewCount: 38,
     img: "sola-cleanser.png",
-    lede: "A non-stripping daily cleansing gel that gently dissolves sunscreen and impurities while preserving the delicate skin moisture barrier.",
+    lede: "A low-foam gel cleanser that removes sunscreen and make-up without stripping the skin barrier. Suitable for morning and evening use.",
     benefits: [
-      "Effectively removes SPF and daily impurities without tightness",
-      "pH-balanced at 5.5 to support healthy skin microbiome",
-      "Infused with soothing green tea extract and glycerin",
-      "Fragrance-free, sulfate-free and dermatologist tested"
+      "Removes SPF and light make-up in one wash",
+      "pH-balanced, no sulphates",
+      "Leaves skin comfortable, not tight"
     ],
     usage: [
       "Dispense one to two pumps onto damp hands",
@@ -635,49 +646,48 @@ const PRODUCTS = {
       "Rinse with lukewarm water and pat dry",
       "Follow with Daily Face Sunscreen in the morning"
     ],
+    reviews: [
+      {n:"Elif D.", s:5, d:"3 weeks ago", t:"Takes off sunscreen properly without needing a second cleanse."},
+      {n:"Marc B.", s:4, d:"1 month ago", t:"Very gentle. I'd prefer a bit more foam but my skin feels good after."},
+      {n:"Lea S.", s:5, d:"2 months ago", t:"No tightness afterwards, which is what I was looking for."}
+    ],
     svg: '<svg viewBox="0 0 120 230" class="shot-svg-fallback"><rect x="48" y="4" width="24" height="26" rx="2" fill="#5F8D78"/><path d="M26 36 h68 a5 5 0 0 1 5 5 v170 a6 6 0 0 1 -6 6 h-66 a6 6 0 0 1 -6 -6 v-170 a5 5 0 0 1 5 -5 z" fill="#F8FAF7" stroke="#DDE5E0"/><text x="60" y="115" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="60" y="150" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="500" fill="#5F8D78">CLEANSE</text></svg>'
   },
-  barrier: {
-    id: "barrier",
-    name: "Barrier Repair Cream",
-    category: "Moisturizer",
-    size: "Ceramides & Squalane · 50 ml",
+  cream: {
+    id: "cream",
+    name: "Daily Moisturiser",
+    short: "Daily Moisturiser",
+    category: "Skincare",
+    size: "50 ml",
     price: 16.99,
-    rating: "4.8",
-    reviewCount: 42,
+    rating: 4.5,
+    reviewCount: 41,
     img: "sola-cream.png",
-    lede: "A deeply restorative lightweight moisturizer packed with 3 essential ceramides and vegan squalane to seal in hydration before SPF application.",
+    lede: "A light gel-cream that hydrates without weighing skin down. Suitable for morning and evening, under or over other steps.",
     benefits: [
-      "Rapidly restores compromised skin barrier function",
-      "Locks in 24-hour hydration without greasy residue",
-      "Preps the skin for a smooth, pill-free sunscreen finish",
-      "Suitable for acne-prone and reactive skin types"
+      "Gel-cream texture for normal to combination skin",
+      "Ceramides and glycerin",
+      "Non-comedogenic"
     ],
     usage: [
-      "Apply a pea-sized amount to cleansed face and neck",
-      "Smooth evenly until fully absorbed",
-      "Allow 60 seconds before applying your Daily Face Sunscreen"
+      "Apply morning and evening to cleansed face and neck",
+      "Gently smooth over skin until fully absorbed",
+      "In the morning, follow with Daily Face Sunscreen SPF 50+"
     ],
-    svg: '<svg viewBox="0 0 130 180" class="shot-svg-fallback"><rect x="25" y="14" width="80" height="24" rx="3" fill="#D3A76C"/><path d="M15 42 h100 a6 6 0 0 1 6 6 v100 a8 8 0 0 1 -8 8 h-96 a8 8 0 0 1 -8 -8 v-100 a6 6 0 0 1 6 -6 z" fill="#FAF8F5" stroke="#E6E0D6"/><text x="65" y="96" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="65" y="126" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="500" fill="#A87739">BARRIER</text></svg>'
+    reviews: [
+      {n:"Hannah W.", s:5, d:"1 month ago", t:"Light enough for summer but still hydrating."},
+      {n:"Deniz A.", s:4, d:"2 months ago", t:"Nice texture. I need something richer in winter."},
+      {n:"Rob F.", s:4, d:"3 months ago", t:"Absorbs fast, no shine. Good under sunscreen."}
+    ],
+    svg: '<svg viewBox="0 0 130 180" class="shot-svg-fallback"><rect x="25" y="14" width="80" height="24" rx="3" fill="#D3A76C"/><path d="M15 42 h100 a6 6 0 0 1 6 6 v100 a8 8 0 0 1 -8 8 h-96 a8 8 0 0 1 -8 -8 v-100 a6 6 0 0 1 6 -6 z" fill="#FAF8F5" stroke="#E6E0D6"/><text x="65" y="96" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="65" y="126" text-anchor="middle" font-family="DM Sans" font-size="10" font-weight="500" fill="#A87739">GEL-CREAM</text></svg>'
   }
 };
 
-const SHIPPING = 3.95;
+const SHIP = 3.95;
 const FREE_OVER = 25;
 
-const REVIEWS = [
-  {n:"Maya R.",   s:5, d:"2 weeks ago",  t:"Light texture, no white cast at all. I've been using it every morning for two months and my skin looks calmer."},
-  {n:"Jen T.",    s:5, d:"3 weeks ago",  t:"Sits well under makeup and doesn't pill, which was my main problem with other sunscreens."},
-  {n:"Aisha K.", s:4, d:"1 month ago",  t:"Good protection without the greasy feel. There's a faint scent at first but it fades quickly."},
-  {n:"Dilan A.", s:5, d:"1 month ago",  t:"My skin is sensitive and reacts to most SPF products. This one hasn't caused any breakouts."},
-  {n:"Chris M.", s:5, d:"1 month ago",  t:"Absorbs fast. I use it on my neck and ears too and the tube still lasts about six weeks."},
-  {n:"Sam W.",   s:4, d:"2 months ago", t:"Does the job for daily wear. I'd like a bigger tube for the price, but I keep repurchasing."},
-  {n:"Noor E.",  s:5, d:"2 months ago", t:"Finally a sunscreen I don't mind reapplying in the afternoon. No stinging around the eyes."},
-  {n:"Tobias L.",s:4, d:"3 months ago", t:"Fine for everyday use in the city. For a full beach day I'd still take something heavier."}
-];
-
 let activeProductId = "sun";
-let cart = { sun: 0, cleanser: 0, barrier: 0 };
+let cart = { sun: 0, cleanser: 0, cream: 0 };
 
 /* ---------- helper ---------- */
 function money(v){ return '\u20ac'+v.toFixed(2); }
@@ -696,7 +706,7 @@ function subtotal(){
 }
 function shipCost(){
   const count = itemCount();
-  return count === 0 ? 0 : (subtotal() >= FREE_OVER ? 0 : SHIPPING);
+  return count === 0 ? 0 : (subtotal() >= FREE_OVER ? 0 : SHIP);
 }
 function total(){
   return subtotal() + shipCost();
@@ -715,7 +725,6 @@ function openPDP(id){
   activeProductId = id;
   const p = PRODUCTS[id];
 
-  // Image with graceful fallback
   const shotEl = document.getElementById('pdpShot');
   shotEl.innerHTML = '<img src="'+p.img+'" alt="'+p.name+'" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'block\';">'+
                      '<div style="display:none;">'+p.svg+'</div>';
@@ -724,7 +733,7 @@ function openPDP(id){
   document.getElementById('pdpName').textContent = p.name;
   document.getElementById('pdpSize').textContent = p.size;
   document.getElementById('pdpPrice').textContent = money(p.price);
-  document.getElementById('mainStars').innerHTML = starRow(Math.round(Number(p.rating)));
+  document.getElementById('mainStars').innerHTML = starRow(Math.round(p.rating));
   document.getElementById('pdpRatingTxt').innerHTML = '<b>'+p.rating+'</b> · '+p.reviewCount+' reviews';
   document.getElementById('pdpLede').textContent = p.lede;
 
@@ -733,9 +742,19 @@ function openPDP(id){
 
   document.getElementById('stickyAddBtn').textContent = 'Add to cart · '+money(p.price);
 
-  // Render routine suggestions (exclude current)
-  renderCrossSell(id);
+  document.getElementById('revSubTitle').textContent = 'Showing ' + p.reviews.length + ' of ' + p.reviewCount;
+  document.getElementById('reviews').innerHTML = p.reviews.map(r =>
+    '<div class="rev">'+
+      '<div class="rev-top">'+
+        '<span class="stars">'+starRow(r.s)+'</span>'+
+        '<span class="rev-name">'+r.n+'</span>'+
+        '<span class="rev-date">'+r.d+'</span>'+
+      '</div>'+
+      '<p class="rev-body">'+r.t+'</p>'+
+    '</div>'
+  ).join('');
 
+  renderCrossSell(id);
   go('pdp');
   window.scrollTo({top:0, behavior:'instant'});
 }
@@ -749,7 +768,7 @@ function renderCrossSell(currentId){
         <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <div style="display:none;">${p.svg}</div>
       </div>
-      <p class="cross-name">${p.name}</p>
+      <p class="cross-name">${p.short}</p>
       <p class="cross-size">${p.size}</p>
       <div class="cross-foot">
         <span class="cross-price">${money(p.price)}</span>
@@ -800,11 +819,11 @@ function renderCart(){
   el.innerHTML = itemsHtml + `
     <div class="totals">
       <div class="tot-row"><span>Subtotal</span><span>${money(subtotal())}</span></div>
-      <div class="tot-row"><span>Shipping</span><span>${shipCost()===0 ? 'Free' : money(shipCost())}</span></div>
+      <div class="tot-row"><span>Delivery</span><span>${shipCost()===0 ? 'Free' : money(shipCost())}</span></div>
       <div class="tot-row grand"><span>Total</span><span>${money(total())}</span></div>
     </div>
     <div style="margin-top:24px;">
-      <button class="btn" onclick="go('checkout')">Continue to checkout</button>
+      <button class="btn" onclick="go('checkout')">Proceed to checkout</button>
       <div style="height:10px;"></div>
       <button class="btn ghost" onclick="go('pdp')">Continue shopping</button>
     </div>
@@ -818,7 +837,7 @@ function renderCheckout(){
     const p = PRODUCTS[id];
     return `
       <div class="tot-row" style="padding-top:0;">
-        <span>${p.name} × ${q}</span>
+        <span>${p.short} × ${q}</span>
         <span>${money(p.price * q)}</span>
       </div>
     `;
@@ -848,7 +867,6 @@ function addToCartDirect(id){
   go('cart');
 }
 
-// backward compatibility for tracking wrapper
 function addToCart(){ addToCartCurrent(); }
 
 let current = 'pdp';
@@ -887,21 +905,7 @@ function reset(){
   openPDP('sun');
 }
 
-/* ---------- Static Init ---------- */
-function initReviews(){
-  document.getElementById('reviews').innerHTML = REVIEWS.map(r =>
-    '<div class="rev">'+
-      '<div class="rev-top">'+
-        '<span class="stars">'+starRow(r.s)+'</span>'+
-        '<span class="rev-name">'+r.n+'</span>'+
-        '<span class="rev-date">'+r.d+'</span>'+
-      '</div>'+
-      '<p class="rev-body">'+r.t+'</p>'+
-    '</div>'
-  ).join('');
-}
-
-initReviews();
+/* ---------- Init ---------- */
 openPDP('sun');
 renderBadge();
 </script>
