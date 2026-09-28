@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SOLA — Daily Face Sunscreen SPF 50+</title>
+<title>SOLA — Skincare</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -33,7 +33,6 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ---- shell: phone-width column, consistent across devices ---- */
 .app{
   max-width:520px;
   margin:0 auto;
@@ -93,19 +92,24 @@ body{
 /* ---- product image ---- */
 .shot{
   background: #EAE6DE;
-  padding: 12px 0;
+  padding: 16px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  min-height: 320px;
 }
 .shot img{
   width: 100%;
-  max-width: 380px;
-  height: 380px;
+  max-width: 360px;
+  height: 340px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
+}
+.shot-svg-fallback{
+  width: 130px;
+  height: auto;
 }
 
 /* ---- pdp body ---- */
@@ -168,7 +172,6 @@ h1{
 
 /* accordion-ish info blocks */
 .block{border-top:1px solid var(--line);padding:22px 0;}
-.block:last-of-type{border-bottom:1px solid var(--line);}
 .block h2{
   font-family:var(--sans);
   font-size:12px;font-weight:700;
@@ -188,10 +191,75 @@ h1{
 }
 .block li:last-child{margin-bottom:0;}
 
+/* complete routine / cross-sell grid */
+.cross-sell{
+  border-top:1px solid var(--line);
+  padding:26px 0 10px;
+}
+.cross-head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:16px;
+}
+.cross-head h2{
+  font-family:var(--serif);font-weight:400;font-size:23px;
+}
+.cross-head span{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em;}
+.cross-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.cross-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:12px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  transition:border-color .15s, transform .15s;
+}
+.cross-card:hover{border-color:var(--ink);transform:translateY(-1px);}
+.cross-img-wrap{
+  height:120px;
+  background:#F5F3EF;
+  border-radius:3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+  overflow:hidden;
+}
+.cross-img-wrap img{
+  width:100%;height:100%;object-fit:contain;
+}
+.cross-img-wrap svg{
+  width:46px;height:auto;
+}
+.cross-name{
+  font-size:13.5px;font-weight:500;line-height:1.25;margin-bottom:4px;
+  color:var(--ink);
+}
+.cross-size{font-size:11.5px;color:var(--faint);margin-bottom:8px;}
+.cross-foot{
+  display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:4px;
+}
+.cross-price{font-size:14px;font-weight:500;}
+.btn-mini-add{
+  background:none;border:1px solid var(--line);border-radius:3px;
+  padding:4px 8px;font-size:11.5px;font-weight:500;cursor:pointer;
+  color:var(--ink);transition:all .15s;
+}
+.btn-mini-add:hover{
+  background:var(--ink);color:var(--paper);border-color:var(--ink);
+}
+
 /* reviews */
 .rev-head{
   display:flex;align-items:baseline;justify-content:space-between;
-  margin:32px 0 4px;
+  margin:28px 0 4px;
+  border-top:1px solid var(--line);
+  padding-top:22px;
 }
 .rev-head h2{
   font-family:var(--serif);font-weight:400;font-size:22px;
@@ -199,15 +267,15 @@ h1{
 .rev-head span{font-size:13px;color:var(--faint);}
 .rev{
   border-top:1px solid var(--line);
-  padding:18px 0;
+  padding:16px 0;
 }
 .rev-top{
-  display:flex;align-items:center;gap:10px;margin-bottom:7px;
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
 }
 .rev-top .stars svg{width:12px;height:12px;}
 .rev-name{font-size:13px;font-weight:500;}
 .rev-date{font-size:12px;color:var(--faint);margin-left:auto;}
-.rev-body{font-size:14.5px;color:var(--muted);}
+.rev-body{font-size:14px;color:var(--muted);}
 
 /* ---- cart ---- */
 .section-title{
@@ -216,39 +284,42 @@ h1{
 }
 .line-item{
   display:flex;gap:14px;
-  padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:16px 0;border-top:1px solid var(--line);
 }
+.line-item:last-of-type{border-bottom:1px solid var(--line);}
 .thumb{
-  width:72px;height:88px;flex-shrink:0;
-  background:linear-gradient(170deg,#F2EFE8,#EAE5DA);
+  width:68px;height:84px;flex-shrink:0;
+  background:#EAE6DE;
   border-radius:3px;
   display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
-.thumb svg{width:38px;height:auto;}
+.thumb img{width:100%;height:100%;object-fit:contain;}
+.thumb svg{width:36px;height:auto;}
 .li-body{flex:1;min-width:0;}
-.li-name{font-size:15px;font-weight:500;line-height:1.3;}
-.li-size{font-size:13px;color:var(--faint);margin-top:2px;}
-.li-price{font-size:15px;margin-top:8px;}
+.li-name{font-size:14.5px;font-weight:500;line-height:1.3;}
+.li-size{font-size:12px;color:var(--faint);margin-top:2px;}
+.li-price{font-size:14.5px;margin-top:6px;font-weight:500;}
 .qty{
   display:inline-flex;align-items:center;
   border:1px solid var(--line);border-radius:3px;
-  margin-top:10px;
+  margin-top:8px;
 }
 .qty button{
-  width:32px;height:32px;background:none;border:none;
-  cursor:pointer;font-size:16px;color:var(--ink);
+  width:28px;height:28px;background:none;border:none;
+  cursor:pointer;font-size:15px;color:var(--ink);
   display:flex;align-items:center;justify-content:center;
 }
 .qty button:hover{background:rgba(35,33,32,.04);}
 .qty span{
-  min-width:32px;text-align:center;font-size:14px;
+  min-width:28px;text-align:center;font-size:13px;
   font-variant-numeric:tabular-nums;
 }
 .remove{
   background:none;border:none;cursor:pointer;
-  font-size:13px;color:var(--faint);
+  font-size:12px;color:var(--faint);
   text-decoration:underline;text-underline-offset:2px;
-  padding:0;margin-top:12px;
+  padding:0;margin-left:12px;
 }
 .remove:hover{color:var(--ink);}
 
@@ -256,11 +327,11 @@ h1{
 .tot-row{
   display:flex;justify-content:space-between;
   font-size:14.5px;color:var(--muted);
-  padding:7px 0;
+  padding:6px 0;
 }
 .tot-row.grand{
   border-top:1px solid var(--line);
-  margin-top:10px;padding-top:16px;
+  margin-top:10px;padding-top:14px;
   font-size:17px;color:var(--ink);font-weight:500;
 }
 .empty{
@@ -269,18 +340,18 @@ h1{
 .empty p{color:var(--muted);font-size:15px;margin-bottom:22px;}
 
 /* ---- checkout form ---- */
-.fieldset{margin-bottom:26px;}
+.fieldset{margin-bottom:24px;}
 .fieldset h3{
   font-size:12px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;margin-bottom:14px;
+  text-transform:uppercase;margin-bottom:12px;
 }
 .field{margin-bottom:12px;}
 .field label{
   display:block;font-size:13px;color:var(--muted);margin-bottom:5px;
 }
 .field input{
-  width:100%;font-family:var(--sans);font-size:16px;
-  padding:13px 12px;
+  width:100%;font-family:var(--sans);font-size:15px;
+  padding:12px 11px;
   border:1px solid var(--line);border-radius:3px;
   background:var(--surface);color:var(--ink);
 }
@@ -294,7 +365,7 @@ h1{
 .summary-mini{
   background:var(--surface);
   border:1px solid var(--line);border-radius:4px;
-  padding:16px;margin-bottom:26px;
+  padding:16px;margin-bottom:24px;
 }
 
 /* ---- confirmation ---- */
@@ -303,12 +374,12 @@ h1{
   width:52px;height:52px;border-radius:50%;
   background:var(--amber-soft);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 22px;
+  margin:0 auto 20px;
 }
 .confirm h2{
-  font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:10px;
+  font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:8px;
 }
-.confirm p{color:var(--muted);font-size:15px;margin-bottom:6px;}
+.confirm p{color:var(--muted);font-size:14.5px;margin-bottom:6px;}
 .order-no{
   font-size:13px;color:var(--faint);
   letter-spacing:.06em;margin-top:14px;
@@ -316,7 +387,7 @@ h1{
 
 footer{
   border-top:1px solid var(--line);
-  padding:26px 20px 40px;
+  padding:24px 20px 36px;
   text-align:center;
 }
 footer p{font-size:12px;color:var(--faint);}
@@ -344,7 +415,7 @@ footer p{font-size:12px;color:var(--faint);}
   <!-- ============ HEADER ============ -->
   <div class="bar">
     <div id="bar-left">
-      <button class="wordmark" onclick="go('pdp')">SOLA</button>
+      <button class="wordmark" onclick="openPDP('sun')">SOLA</button>
     </div>
     <div class="bar-right">
       <button class="icon-btn" onclick="go('cart')" aria-label="Cart">
@@ -358,49 +429,41 @@ footer p{font-size:12px;color:var(--faint);}
 
   <!-- ============ PDP ============ -->
   <section class="view on" id="view-pdp">
+    <div class="shot" id="pdpShot"></div>
 
-    <div class="shot">
-  <!-- product: sunscreen tube (same with Marketplace/Live) -->
- <img src="sola-sun.png" alt="SOLA Daily Face Sunscreen">
-</div>
     <div class="pad">
-      <p class="crumb">Sun care</p>
-      <h1>Daily Face Sunscreen</h1>
-      <p class="size">Broad-spectrum SPF 50+ · 50 ml</p>
+      <p class="crumb" id="pdpCrumb">Sun care</p>
+      <h1 id="pdpName">Daily Face Sunscreen</h1>
+      <p class="size" id="pdpSize">Broad-spectrum SPF 50+ · 50 ml</p>
 
       <div class="price-row">
-        <span class="price">€14.99</span>
+        <span class="price" id="pdpPrice">€14.99</span>
       </div>
 
       <div class="rating">
         <span class="stars" id="mainStars"></span>
-        <span class="rating-txt"><b>4.8</b> · 50 reviews</span>
+        <span class="rating-txt" id="pdpRatingTxt"><b>4.8</b> · 50 reviews</span>
       </div>
 
-      <p class="lede">
-        A lightweight daily sunscreen for the face. The fluid texture absorbs in
-        seconds and leaves no white cast, so it works as the last step of a
-        morning routine or under makeup.
-      </p>
+      <p class="lede" id="pdpLede"></p>
 
       <div class="block">
         <h2>Benefits</h2>
-        <ul>
-          <li>Broad-spectrum SPF 50+ protection against UVA and UVB</li>
-          <li>Lightweight fluid texture that absorbs without residue</li>
-          <li>No white cast on any skin tone</li>
-          <li>Fragrance-free and suitable for sensitive skin</li>
-        </ul>
+        <ul id="pdpBenefits"></ul>
       </div>
 
       <div class="block">
         <h2>How to use</h2>
-        <ul>
-          <li>Apply every morning as the final step of your skincare routine</li>
-          <li>Use about two finger-lengths for the face and neck</li>
-          <li>Let it absorb for a minute before applying makeup</li>
-          <li>Reapply every two hours during direct sun exposure</li>
-        </ul>
+        <ul id="pdpUsage"></ul>
+      </div>
+
+      <!-- Complete Routine Section -->
+      <div class="cross-sell" id="crossSellSection">
+        <div class="cross-head">
+          <h2>Complete your routine</h2>
+          <span>SOLA Essentials</span>
+        </div>
+        <div class="cross-grid" id="crossGrid"></div>
       </div>
 
       <div class="rev-head">
@@ -411,7 +474,7 @@ footer p{font-size:12px;color:var(--faint);}
     </div>
 
     <div class="sticky">
-      <button class="btn" onclick="addToCart()">Add to cart · €14.99</button>
+      <button class="btn" id="stickyAddBtn" onclick="addToCartCurrent()">Add to cart · €14.99</button>
       <p class="btn-note">Free shipping on orders over €25</p>
     </div>
   </section>
@@ -430,11 +493,8 @@ footer p{font-size:12px;color:var(--faint);}
       <h2 class="section-title">Checkout</h2>
 
       <div class="summary-mini">
-        <div class="tot-row" style="padding-top:0;">
-          <span id="coItems">Daily Face Sunscreen × 1</span>
-          <span id="coSub">€14.99</span>
-        </div>
-        <div class="tot-row">
+        <div id="coItemList"></div>
+        <div class="tot-row" style="margin-top:8px;">
           <span>Shipping</span>
           <span id="coShip">€3.95</span>
         </div>
@@ -527,14 +587,87 @@ footer p{font-size:12px;color:var(--faint);}
 </div>
 
 <script>
-/* ---------- data ---------- */
-const PRODUCT = { name:"Daily Face Sunscreen", size:"Broad-spectrum SPF 50+ · 50 ml", price:14.99 };
+/* ---------- products catalog ---------- */
+const PRODUCTS = {
+  sun: {
+    id: "sun",
+    name: "Daily Face Sunscreen",
+    category: "Sun care",
+    size: "Broad-spectrum SPF 50+ · 50 ml",
+    price: 14.99,
+    rating: "4.8",
+    reviewCount: 50,
+    img: "sola-sun.png",
+    lede: "A lightweight daily sunscreen for the face. The fluid texture absorbs in seconds and leaves no white cast, so it works as the last step of a morning routine or under makeup.",
+    benefits: [
+      "Broad-spectrum SPF 50+ protection against UVA and UVB",
+      "Lightweight fluid texture that absorbs without residue",
+      "No white cast on any skin tone",
+      "Fragrance-free and suitable for sensitive skin"
+    ],
+    usage: [
+      "Apply every morning as the final step of your skincare routine",
+      "Use about two finger-lengths for the face and neck",
+      "Let it absorb for a minute before applying makeup",
+      "Reapply every two hours during direct sun exposure"
+    ],
+    svg: '<svg viewBox="0 0 120 210" class="shot-svg-fallback"><rect x="42" y="6" width="36" height="26" rx="3" fill="#C8892F"/><rect x="46" y="30" width="28" height="5" rx="1.5" fill="#B87E2A"/><path d="M30 36 h60 a4 4 0 0 1 4 4 v150 a6 6 0 0 1 -6 6 h-56 a6 6 0 0 1 -6 -6 v-150 a4 4 0 0 1 4 -4 z" fill="#FBF9F5" stroke="#E4DED3"/><text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="60" y="140" text-anchor="middle" font-family="DM Sans" font-size="16" font-weight="700" fill="#C8892F">50+</text></svg>'
+  },
+  cleanser: {
+    id: "cleanser",
+    name: "Gentle Cleansing Gel",
+    category: "Cleanser",
+    size: "Balancing formula · 150 ml",
+    price: 9.99,
+    rating: "4.9",
+    reviewCount: 38,
+    img: "sola-cleanser.png",
+    lede: "A non-stripping daily cleansing gel that gently dissolves sunscreen and impurities while preserving the delicate skin moisture barrier.",
+    benefits: [
+      "Effectively removes SPF and daily impurities without tightness",
+      "pH-balanced at 5.5 to support healthy skin microbiome",
+      "Infused with soothing green tea extract and glycerin",
+      "Fragrance-free, sulfate-free and dermatologist tested"
+    ],
+    usage: [
+      "Dispense one to two pumps onto damp hands",
+      "Gently massage over face and neck in circular motions",
+      "Rinse with lukewarm water and pat dry",
+      "Follow with Daily Face Sunscreen in the morning"
+    ],
+    svg: '<svg viewBox="0 0 120 230" class="shot-svg-fallback"><rect x="48" y="4" width="24" height="26" rx="2" fill="#5F8D78"/><path d="M26 36 h68 a5 5 0 0 1 5 5 v170 a6 6 0 0 1 -6 6 h-66 a6 6 0 0 1 -6 -6 v-170 a5 5 0 0 1 5 -5 z" fill="#F8FAF7" stroke="#DDE5E0"/><text x="60" y="115" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="60" y="150" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="500" fill="#5F8D78">CLEANSE</text></svg>'
+  },
+  barrier: {
+    id: "barrier",
+    name: "Barrier Repair Cream",
+    category: "Moisturizer",
+    size: "Ceramides & Squalane · 50 ml",
+    price: 16.99,
+    rating: "4.8",
+    reviewCount: 42,
+    img: "sola-cream.png",
+    lede: "A deeply restorative lightweight moisturizer packed with 3 essential ceramides and vegan squalane to seal in hydration before SPF application.",
+    benefits: [
+      "Rapidly restores compromised skin barrier function",
+      "Locks in 24-hour hydration without greasy residue",
+      "Preps the skin for a smooth, pill-free sunscreen finish",
+      "Suitable for acne-prone and reactive skin types"
+    ],
+    usage: [
+      "Apply a pea-sized amount to cleansed face and neck",
+      "Smooth evenly until fully absorbed",
+      "Allow 60 seconds before applying your Daily Face Sunscreen"
+    ],
+    svg: '<svg viewBox="0 0 130 180" class="shot-svg-fallback"><rect x="25" y="14" width="80" height="24" rx="3" fill="#D3A76C"/><path d="M15 42 h100 a6 6 0 0 1 6 6 v100 a8 8 0 0 1 -8 8 h-96 a8 8 0 0 1 -8 -8 v-100 a6 6 0 0 1 6 -6 z" fill="#FAF8F5" stroke="#E6E0D6"/><text x="65" y="96" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" letter-spacing="2" fill="#232120">SOLA</text><text x="65" y="126" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="500" fill="#A87739">BARRIER</text></svg>'
+  }
+};
+
 const SHIPPING = 3.95;
 const FREE_OVER = 25;
 
 const REVIEWS = [
-  {n:"Maya R.",  s:5, d:"2 weeks ago",  t:"Light texture, no white cast at all. I've been using it every morning for two months and my skin looks calmer."},
-  {n:"Jen T.",   s:5, d:"3 weeks ago",  t:"Sits well under makeup and doesn't pill, which was my main problem with other sunscreens."},
+  {n:"Maya R.",   s:5, d:"2 weeks ago",  t:"Light texture, no white cast at all. I've been using it every morning for two months and my skin looks calmer."},
+  {n:"Jen T.",    s:5, d:"3 weeks ago",  t:"Sits well under makeup and doesn't pill, which was my main problem with other sunscreens."},
   {n:"Aisha K.", s:4, d:"1 month ago",  t:"Good protection without the greasy feel. There's a faint scent at first but it fades quickly."},
   {n:"Dilan A.", s:5, d:"1 month ago",  t:"My skin is sensitive and reacts to most SPF products. This one hasn't caused any breakouts."},
   {n:"Chris M.", s:5, d:"1 month ago",  t:"Absorbs fast. I use it on my neck and ears too and the tube still lasts about six weeks."},
@@ -543,103 +676,180 @@ const REVIEWS = [
   {n:"Tobias L.",s:4, d:"3 months ago", t:"Fine for everyday use in the city. For a full beach day I'd still take something heavier."}
 ];
 
-let qty = 0;
+let activeProductId = "sun";
+let cart = { sun: 0, cleanser: 0, barrier: 0 };
 
-/* ---------- stars ---------- */
+/* ---------- helper ---------- */
+function money(v){ return '\u20ac'+v.toFixed(2); }
 function starSvg(filled){
   return '<svg viewBox="0 0 24 24" fill="'+(filled?'#C8892F':'none')+'" stroke="#C8892F" stroke-width="1.6" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
 }
 function starRow(n){
-  let h="";
-  for(let i=1;i<=5;i++) h += starSvg(i<=n);
-  return h;
+  let h=""; for(let i=1;i<=5;i++) h += starSvg(i<=n); return h;
 }
 
-/* ---------- render ---------- */
-function renderStatic(){
-  document.getElementById('mainStars').innerHTML = starRow(5);
-  document.getElementById('reviews').innerHTML = REVIEWS.map(r =>
-    '<div class="rev">'+
-      '<div class="rev-top">'+
-        '<span class="stars">'+starRow(r.s)+'</span>'+
-        '<span class="rev-name">'+r.n+'</span>'+
-        '<span class="rev-date">'+r.d+'</span>'+
-      '</div>'+
-      '<p class="rev-body">'+r.t+'</p>'+
-    '</div>'
-  ).join('');
+function itemCount(){
+  return Object.values(cart).reduce((a,b)=>a+b, 0);
 }
-
-function money(v){ return '\u20ac'+v.toFixed(2); }
-
-function subtotal(){ return qty * PRODUCT.price; }
-function shipCost(){ return qty===0 ? 0 : (subtotal() >= FREE_OVER ? 0 : SHIPPING); }
-function total(){ return subtotal() + shipCost(); }
+function subtotal(){
+  return Object.entries(cart).reduce((sum,[id,qty])=> sum + (qty * PRODUCTS[id].price), 0);
+}
+function shipCost(){
+  const count = itemCount();
+  return count === 0 ? 0 : (subtotal() >= FREE_OVER ? 0 : SHIPPING);
+}
+function total(){
+  return subtotal() + shipCost();
+}
 
 function renderBadge(){
+  const count = itemCount();
   const b = document.getElementById('badge');
-  b.textContent = qty;
-  b.classList.toggle('on', qty>0);
+  b.textContent = count;
+  b.classList.toggle('on', count > 0);
 }
 
+/* ---------- PDP render ---------- */
+function openPDP(id){
+  if(!PRODUCTS[id]) id = "sun";
+  activeProductId = id;
+  const p = PRODUCTS[id];
+
+  // Image with graceful fallback
+  const shotEl = document.getElementById('pdpShot');
+  shotEl.innerHTML = '<img src="'+p.img+'" alt="'+p.name+'" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'block\';">'+
+                     '<div style="display:none;">'+p.svg+'</div>';
+
+  document.getElementById('pdpCrumb').textContent = p.category;
+  document.getElementById('pdpName').textContent = p.name;
+  document.getElementById('pdpSize').textContent = p.size;
+  document.getElementById('pdpPrice').textContent = money(p.price);
+  document.getElementById('mainStars').innerHTML = starRow(Math.round(Number(p.rating)));
+  document.getElementById('pdpRatingTxt').innerHTML = '<b>'+p.rating+'</b> · '+p.reviewCount+' reviews';
+  document.getElementById('pdpLede').textContent = p.lede;
+
+  document.getElementById('pdpBenefits').innerHTML = p.benefits.map(b => '<li>'+b+'</li>').join('');
+  document.getElementById('pdpUsage').innerHTML = p.usage.map(u => '<li>'+u+'</li>').join('');
+
+  document.getElementById('stickyAddBtn').textContent = 'Add to cart · '+money(p.price);
+
+  // Render routine suggestions (exclude current)
+  renderCrossSell(id);
+
+  go('pdp');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function renderCrossSell(currentId){
+  const others = Object.values(PRODUCTS).filter(p => p.id !== currentId);
+  const grid = document.getElementById('crossGrid');
+  grid.innerHTML = others.map(p => `
+    <div class="cross-card" onclick="openPDP('${p.id}')">
+      <div class="cross-img-wrap">
+        <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div style="display:none;">${p.svg}</div>
+      </div>
+      <p class="cross-name">${p.name}</p>
+      <p class="cross-size">${p.size}</p>
+      <div class="cross-foot">
+        <span class="cross-price">${money(p.price)}</span>
+        <button class="btn-mini-add" onclick="event.stopPropagation(); addToCartDirect('${p.id}')">+ Add</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------- Cart render ---------- */
 function renderCart(){
   const el = document.getElementById('cartBody');
-  if(qty===0){
+  const count = itemCount();
+  if(count === 0){
     el.innerHTML =
       '<div class="empty">'+
         '<p>Your cart is empty.</p>'+
-        '<button class="btn ghost" onclick="go(\'pdp\')">Continue shopping</button>'+
+        '<button class="btn ghost" onclick="openPDP(\'sun\')">Explore products</button>'+
       '</div>';
     return;
   }
-  el.innerHTML =
-    '<div class="line-item">'+
-    '<div class="thumb">'+
-        '<img src="sola-sun.png" style="width:100%;height:100%;object-fit:contain;border-radius:3px;" alt="SOLA">'+
-      '</div>'+
-      '<div class="li-body">'+
-        '<p class="li-name">'+PRODUCT.name+'</p>'+
-        '<p class="li-size">'+PRODUCT.size+'</p>'+
-        '<p class="li-price">'+money(PRODUCT.price)+'</p>'+
-        '<div class="qty">'+
-          '<button onclick="setQty('+(qty-1)+')" aria-label="Decrease quantity">−</button>'+
-          '<span>'+qty+'</span>'+
-          '<button onclick="setQty('+(qty+1)+')" aria-label="Increase quantity">+</button>'+
-        '</div><br>'+
-        '<button class="remove" onclick="setQty(0)">Remove</button>'+
-      '</div>'+
-    '</div>'+
-    '<div class="totals">'+
-      '<div class="tot-row"><span>Subtotal</span><span>'+money(subtotal())+'</span></div>'+
-      '<div class="tot-row"><span>Shipping</span><span>'+(shipCost()===0?'Free':money(shipCost()))+'</span></div>'+
-      '<div class="tot-row grand"><span>Total</span><span>'+money(total())+'</span></div>'+
-    '</div>'+
-    '<div style="margin-top:26px;">'+
-      '<button class="btn" onclick="go(\'checkout\')">Continue to checkout</button>'+
-      '<div style="height:10px;"></div>'+
-      '<button class="btn ghost" onclick="go(\'pdp\')">Continue shopping</button>'+
-    '</div>';
+
+  const itemsHtml = Object.entries(cart).filter(([id,q]) => q > 0).map(([id,q]) => {
+    const p = PRODUCTS[id];
+    return `
+      <div class="line-item">
+        <div class="thumb">
+          <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none;">${p.svg}</div>
+        </div>
+        <div class="li-body">
+          <p class="li-name">${p.name}</p>
+          <p class="li-size">${p.size}</p>
+          <p class="li-price">${money(p.price)}</p>
+          <div style="display:flex;align-items:center;margin-top:8px;">
+            <div class="qty">
+              <button onclick="setQty('${id}', ${q-1})" aria-label="Decrease quantity">−</button>
+              <span>${q}</span>
+              <button onclick="setQty('${id}', ${q+1})" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="remove" onclick="setQty('${id}', 0)">Remove</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  el.innerHTML = itemsHtml + `
+    <div class="totals">
+      <div class="tot-row"><span>Subtotal</span><span>${money(subtotal())}</span></div>
+      <div class="tot-row"><span>Shipping</span><span>${shipCost()===0 ? 'Free' : money(shipCost())}</span></div>
+      <div class="tot-row grand"><span>Total</span><span>${money(total())}</span></div>
+    </div>
+    <div style="margin-top:24px;">
+      <button class="btn" onclick="go('checkout')">Continue to checkout</button>
+      <div style="height:10px;"></div>
+      <button class="btn ghost" onclick="go('pdp')">Continue shopping</button>
+    </div>
+  `;
 }
 
+/* ---------- Checkout render ---------- */
 function renderCheckout(){
-  document.getElementById('coItems').textContent = PRODUCT.name+' × '+qty;
-  document.getElementById('coSub').textContent = money(subtotal());
+  const listEl = document.getElementById('coItemList');
+  listEl.innerHTML = Object.entries(cart).filter(([id,q]) => q > 0).map(([id,q]) => {
+    const p = PRODUCTS[id];
+    return `
+      <div class="tot-row" style="padding-top:0;">
+        <span>${p.name} × ${q}</span>
+        <span>${money(p.price * q)}</span>
+      </div>
+    `;
+  }).join('');
+
   document.getElementById('coShip').textContent = shipCost()===0 ? 'Free' : money(shipCost());
   document.getElementById('coTotal').textContent = money(total());
   document.getElementById('coBtnTotal').textContent = money(total());
 }
 
-/* ---------- actions ---------- */
-function setQty(n){
-  qty = Math.max(0, Math.min(9, n));
-  renderBadge(); renderCart();
-  if(qty===0 && current==='checkout') go('cart');
+/* ---------- Actions ---------- */
+function setQty(id, n){
+  if(!PRODUCTS[id]) return;
+  cart[id] = Math.max(0, Math.min(9, n));
+  renderBadge();
+  renderCart();
+  if(itemCount() === 0 && current === 'checkout') go('cart');
 }
 
-function addToCart(){
-  setQty(qty+1);
+function addToCartCurrent(){
+  addToCartDirect(activeProductId);
+}
+
+function addToCartDirect(id){
+  cart[id] = (cart[id] || 0) + 1;
+  renderBadge();
   go('cart');
 }
+
+// backward compatibility for tracking wrapper
+function addToCart(){ addToCartCurrent(); }
 
 let current = 'pdp';
 function go(view){
@@ -647,10 +857,9 @@ function go(view){
   document.getElementById('view-'+view).classList.add('on');
   current = view;
 
-  // header left slot: wordmark on pdp, back link elsewhere
   const left = document.getElementById('bar-left');
   if(view==='pdp' || view==='confirm'){
-    left.innerHTML = '<button class="wordmark" onclick="go(\'pdp\')">SOLA</button>';
+    left.innerHTML = '<button class="wordmark" onclick="openPDP(\'sun\')">SOLA</button>';
   } else {
     const target = view==='checkout' ? 'cart' : 'pdp';
     const label  = view==='checkout' ? 'Cart' : 'Product';
@@ -666,26 +875,39 @@ function go(view){
 
 function placeOrder(){
   document.getElementById('orderNo').textContent = 48000 + Math.floor(Math.random()*900);
-  qty = 0; renderBadge();
+  Object.keys(cart).forEach(k => cart[k] = 0);
+  renderBadge();
   go('confirm');
 }
 
 function reset(){
-  qty = 0; renderBadge();
+  Object.keys(cart).forEach(k => cart[k] = 0);
+  renderBadge();
   document.querySelectorAll('input').forEach(i => i.value = '');
-  go('pdp');
+  openPDP('sun');
 }
 
-/* ---------- init ---------- */
-renderStatic();
+/* ---------- Static Init ---------- */
+function initReviews(){
+  document.getElementById('reviews').innerHTML = REVIEWS.map(r =>
+    '<div class="rev">'+
+      '<div class="rev-top">'+
+        '<span class="stars">'+starRow(r.s)+'</span>'+
+        '<span class="rev-name">'+r.n+'</span>'+
+        '<span class="rev-date">'+r.d+'</span>'+
+      '</div>'+
+      '<p class="rev-body">'+r.t+'</p>'+
+    '</div>'
+  ).join('');
+}
+
+initReviews();
+openPDP('sun');
 renderBadge();
 </script>
 
-
 <!-- ============================================================
      QUALTRICS BEHAVIOURAL TRACKING
-     Sends interaction data to the parent page via postMessage.
-     Harmless if the prototype is opened outside Qualtrics.
      ============================================================ -->
 <script>
 (function(){
@@ -709,18 +931,18 @@ renderBadge();
     store_visits: 0,
     store_list: ""
   };
-  var seen = [];
+  var seen = ["sun"];
   var start = Date.now();
   function secs(){ return Math.round((Date.now()-start)/1000); }
 
   function snapshot(){
     try{
-      T.items_in_cart = (typeof itemCount === "function") ? itemCount()
-                        : (typeof qty !== "undefined" ? qty : 0);
+      T.items_in_cart = (typeof itemCount === "function") ? itemCount() : 0;
       T.cart_value = (typeof total === "function") ? Number(total().toFixed(2)) : 0;
     }catch(e){}
     T.seconds_on_page = secs();
     T.product_list = seen.join("|");
+    T.products_viewed = seen.length;
   }
   function send(){
     snapshot();
@@ -744,17 +966,16 @@ renderBadge();
     if(id && seen.indexOf(id) < 0){ seen.push(id); T.products_viewed = seen.length; }
   }
 
-  wrap("add", function(id){ markAdd(); });
+  wrap("addToCartCurrent", function(){ markAdd(); });
+  wrap("addToCartDirect", function(){ markAdd(); });
   wrap("addToCart", function(){ markAdd(); });
-  wrap("addBundle", function(){ markAdd(); });
-  // capture basket BEFORE placeOrder clears it
+
   if(typeof window.placeOrder === "function"){
     var _po = window.placeOrder;
     window.placeOrder = function(){
       try{
         T.order_value = (typeof total === "function") ? Number(total().toFixed(2)) : 0;
-        T.order_items = (typeof itemCount === "function") ? itemCount()
-                        : (typeof qty !== "undefined" ? qty : 0);
+        T.order_items = (typeof itemCount === "function") ? itemCount() : 0;
       }catch(e){}
       var r = _po.apply(this, arguments);
       T.completed_order = 1;
@@ -763,8 +984,6 @@ renderBadge();
     };
   }
   wrap("openPDP", function(id){ markView(id); });
-  wrap("openSheet", function(id){ markView(id); });
-  wrap("setQty", function(){});
   wrap("go", function(v){
     if(v === "cart") T.reached_cart = 1;
     if(v === "checkout") T.reached_checkout = 1;
